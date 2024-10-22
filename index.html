@@ -3,46 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>음악 플레이어 디자인</title>
+    <title>I💛Audio</title>
+
+    <!-- 폰트 적용 -->
     <style>
-        /* 페이지 전체 중앙 배치 및 스타일 */
+        @font-face {
+            font-family: 'LINESeedKR-Bd';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        /* 전체 중앙 배치 및 스타일 */
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #eaeaea;
-            font-family: Arial, sans-serif;
+            background-color: #f2f2f7;
+            font-family: 'LINESeedKR-Bd', sans-serif;
         }
 
         .music-player {
-            width: 350px;
+            width: 320px;
             background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 25px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
             text-align: center;
-            padding: 20px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .music-player:hover {
+            box-shadow: 0 25px 40px rgba(0, 0, 0, 0.15);
         }
 
         .album-cover {
             width: 100%;
-            border-radius: 15px;
+            border-radius: 18px;
+            margin-bottom: 20px;
         }
 
         .song-info {
-            margin: 20px 0;
+            margin: 15px 0;
         }
 
         .song-title {
-            font-size: 24px;
-            font-weight: bold;
+            font-size: 20px;
+            font-weight: 600;
+            color: #1d1d1f;
         }
 
         .artist-name {
-            color: gray;
+            color: #6e6e73;
             margin-top: 5px;
-            font-size: 18px;
+            font-size: 16px;
         }
 
         .progress-container {
@@ -50,43 +66,46 @@
             justify-content: space-between;
             align-items: center;
             margin-top: 20px;
+            color: #6e6e73;
         }
 
         .progress-bar {
-            width: 80%;
-            height: 5px;
-            background-color: #d3d3d3;
-            border-radius: 3px;
+            width: 75%;
+            height: 4px;
+            background-color: #dcdcdc;
+            border-radius: 2px;
             position: relative;
         }
 
         .progress {
             width: 0;
             height: 100%;
-            background-color: #007BFF;
-            border-radius: 3px;
+            background-color: #ff2d55;
+            border-radius: 2px;
         }
 
         .time {
             font-size: 12px;
-            color: gray;
         }
 
         .play-button {
-            width: 30px;
-            height: 30px;
-            background-color: #007BFF;
+            width: 50px;
+            height: 50px;
+            background-color: #ff2d55;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
             color: white;
-            font-size: 18px;
+            font-size: 24px;
+            margin: 20px auto 0 auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
         }
 
         .play-button:hover {
-            background-color: #0056b3;
+            background-color: #d9143d;
         }
     </style>
 </head>
@@ -94,7 +113,7 @@
 
     <div class="music-player">
         <!-- 앨범 커버 이미지 -->
-        <img src="album-cover.png" alt="앨범 커버" class="album-cover">
+        <img src="https://raw.githubusercontent.com/JisungEda55/audio/refs/heads/main/%EC%95%84%EC%95%BC%EC%B8%A0%EB%85%B8%20%EC%9C%A0%EB%8B%88%20-%20SUPADOPA.jpg" alt="SUPADOPA by UNI" class="album-cover">
         
         <!-- 음악 제목 및 아티스트 정보 -->
         <div class="song-info">
@@ -112,7 +131,7 @@
         </div>
         
         <!-- 재생 버튼 -->
-        <div class="play-button" onclick="togglePlay()">&#9658;</div>
+        <div class="play-button" onclick="togglePlay()">&#9654;</div>
     </div>
 
     <audio id="audioPlayer" style="display:none;">
@@ -131,7 +150,7 @@
                 playButton.innerHTML = '&#10074;&#10074;'; // 일시정지 버튼 표시
             } else {
                 audioPlayer.pause();
-                playButton.innerHTML = '&#9658;'; // 재생 버튼 표시
+                playButton.innerHTML = '&#9654;'; // 재생 버튼 표시
             }
         }
 
