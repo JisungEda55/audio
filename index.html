@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>음악 플레이어 디자인</title>
+    <style>
+        /* 페이지 전체 중앙 배치 및 스타일 */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #eaeaea;
+            font-family: Arial, sans-serif;
+        }
+
+        .music-player {
+            width: 350px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 20px;
+        }
+
+        .album-cover {
+            width: 100%;
+            border-radius: 15px;
+        }
+
+        .song-info {
+            margin: 20px 0;
+        }
+
+        .song-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .artist-name {
+            color: gray;
+            margin-top: 5px;
+            font-size: 18px;
+        }
+
+        .progress-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .progress-bar {
+            width: 80%;
+            height: 5px;
+            background-color: #d3d3d3;
+            border-radius: 3px;
+            position: relative;
+        }
+
+        .progress {
+            width: 0;
+            height: 100%;
+            background-color: #007BFF;
+            border-radius: 3px;
+        }
+
+        .time {
+            font-size: 12px;
+            color: gray;
+        }
+
+        .play-button {
+            width: 30px;
+            height: 30px;
+            background-color: #007BFF;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            color: white;
+            font-size: 18px;
+        }
+
+        .play-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="music-player">
+        <!-- 앨범 커버 이미지 -->
+        <img src="album-cover.png" alt="앨범 커버" class="album-cover">
+        
+        <!-- 음악 제목 및 아티스트 정보 -->
+        <div class="song-info">
+            <div class="song-title">SUPADOPA</div>
+            <div class="artist-name">아야츠노 유니</div>
+        </div>
+        
+        <!-- 재생 바 및 재생 시간 -->
+        <div class="progress-container">
+            <div class="time">0:00</div>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+            <div class="time">2:31</div>
+        </div>
+        
+        <!-- 재생 버튼 -->
+        <div class="play-button" onclick="togglePlay()">&#9658;</div>
+    </div>
+
+    <audio id="audioPlayer" style="display:none;">
+        <source src="audiofile.opus" type="audio/ogg; codecs=opus">
+        <source src="audiofile.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const audioPlayer = document.getElementById('audioPlayer');
+        const playButton = document.querySelector('.play-button');
+        const progress = document.querySelector('.progress');
+
+        function togglePlay() {
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+                playButton.innerHTML = '&#10074;&#10074;'; // 일시정지 버튼 표시
+            } else {
+                audioPlayer.pause();
+                playButton.innerHTML = '&#9658;'; // 재생 버튼 표시
+            }
+        }
+
+        // 재생 시간에 맞춰 진행 바 업데이트
+        audioPlayer.addEventListener('timeupdate', function() {
+            const percentage = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+            progress.style.width = percentage + '%';
+        });
+    </script>
+
+</body>
+</html>
